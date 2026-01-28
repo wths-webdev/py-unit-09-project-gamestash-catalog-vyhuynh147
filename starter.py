@@ -10,21 +10,39 @@ games = {
 }
 
 # get_inventory_count(): Returns how many total games there are in a readable format.
-    
+def get_inventory_count():
+  print("There are " + str(len(games)) + " games in your inventory.")
+
 
 # add_game(title, year): Adds a game to the inventory.
-
+def add_game(title,year):
+    # update() will add to the dictionary if the key does not exist
+    games.update({title: year})
+    
 
 # remove_game(title): Removes a game from the inventory.
-
+def remove_game(title):
+    games.pop(title)
 
 # display_inventory()
 
 
 # search_year(year)
+#def search_year(year):
 
 
 # search_title(title)
+
+#print out all game in numbered list
+def show_inventory():
+    count = 1
+    for game in games:
+        # for key in games, games[key] returns the value
+        print(f"   {str(count)}. {game} by {games[game]}")
+        count += 1
+    print()
+
+
 
 
 
@@ -57,27 +75,22 @@ while True:
         print("What game would you like to add?")
         title = input("Title: ")
         year = input("Year released: ")
+        add_game(title,year)
+        print(title + " was added successfully.")
+    
 
-        # update() will add to the dictionary if the key does not exist
-        games.update({title: year})
 
     elif user_selection == "remove":
         game = input("What title would you like to remove? ")
-
-        games.pop(title)
-        print(title + " was removed successfully.")
+        remove_game(game)
+        print(game + " was removed successfully.")
     
     elif user_selection == "show":
         # function 1:
-        print("There are " + str(len(games)) + " games in your inventory.")
+        get_inventory_count()
 
         # function 2:
-        count = 1
-        for game in games:
-            # for key in games, games[key] returns the value
-            print(f"   {str(count)}. {game} by {games[game]}")
-            count += 1
-        print()
+        show_inventory()
 
     elif user_selection == "year":
         year = int(input("Which year would you like to seach for? "))
