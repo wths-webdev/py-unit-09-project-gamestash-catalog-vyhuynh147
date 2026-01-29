@@ -28,10 +28,17 @@ def remove_game(title):
 
 
 # search_year(year)
-#def search_year(year):
+def search_year(year):
+    for game in games:
+        if games[game] == year:
+            print(f" {game}")
 
 
 # search_title(title)
+def search_title(title):
+    for game in games:
+        if title.lower() in game.lower():
+            print(game)
 
 #print out all game in numbered list
 def show_inventory():
@@ -98,10 +105,12 @@ while True:
         print(f"All games from {year}:")
         for game in games:
             if games[game] == year:
-                print(f"   {game}")
+                print(f"  {game}")
+                search_year(year)
 
     elif user_selection == "title":
         title = input("Which title would you like to search for? ")
+        search_title(title)
 
     elif user_selection == "q":
         print("Bye bye!")
